@@ -4,8 +4,8 @@ export interface IModel {
     id: string;
     text: string;
     isFinished: boolean;
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
     isTextShowed?: boolean;
 }
 
@@ -19,5 +19,5 @@ export interface IColumnLayoutProps {
     completeHandler: (v: TActionSlice) => AnyAction;
     selectorState: IModel[];
     droppableId: string;
-    updatedTextShowed: (v : TUpdateTextShowed) => AnyAction;
+    updateTextShowed: (v : TUpdateTextShowed) => AnyAction;
 }

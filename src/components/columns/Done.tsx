@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import { UseSelector } from "react-redux/es/hooks/useSelector";
 import { StoreState } from "../../redux/store";
 import { doneSlice } from "../../redux/slice/done";
 import ColumnLayout from "../ColumnLayout";
@@ -8,7 +7,7 @@ import { useSelector } from "react-redux";
 export function DoneColumn() {
     const { done } = useSelector((state: StoreState) => state);
     const {
-        action: { completeStatus, remove, add, updatedTextShowed },
+        action: { completeStatus, remove, add, updateTextShowed },
     } = doneSlice;
 
     return (
@@ -21,7 +20,7 @@ export function DoneColumn() {
                 removeHandler={remove}
                 addHandler={add}
                 selectorState={done}
-                updatedTextShowed={updatedTextShowed} 
+                updateTextShowed={updateTextShowed} 
             />
         </>
     )

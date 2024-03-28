@@ -6,7 +6,7 @@ const initialState: IModel[] = [];
 
 export const createCustomSlice = (name: string) => {
     const {
-        actions: { add, remove, completeStatus, reorder, update, updatedTextShowed },
+        actions: { add, remove, completeStatus, reorder, update, updateTextShowed },
         reducer,
     } = createSlice({
         name,
@@ -38,11 +38,11 @@ export const createCustomSlice = (name: string) => {
                 state.splice(index, 1);
             },
             completeStatus(state, action: PayloadAction<TActionSlice>) {
-                const index = state.findIndex(({ id }) => action.payload.id);
+                const index = state.findIndex(({ id }) => id === action.payload.id);
                 state[index].isFinished = action.payload.isFinished;
                 state[index].updatedAt = action.payload.updatedAt;
             },
-            updatedTextShowed(state, action: PayloadAction<TUpdateTextShowed>) {
+            updateTextShowed(state, action: PayloadAction<TUpdateTextShowed>) {
                 const index = state.findIndex(({ id }) => id === action.payload.id);
                 state[index].isTextShowed = action.payload.isTextShowed;
             },
@@ -54,7 +54,7 @@ export const createCustomSlice = (name: string) => {
     })
 
     return {
-        action: { add, remove, completeStatus, reorder, update, updatedTextShowed },
+        action: { add, remove, completeStatus, reorder, update, updateTextShowed },
         reducer,
     };
 };

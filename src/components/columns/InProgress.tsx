@@ -1,15 +1,14 @@
 import { Typography } from "@mui/material";
-import { UseSelector } from "react-redux/es/hooks/useSelector";
-import { StoreState } from "../../redux/store";
-import { inProgressSlice } from "../../redux/slice/inProgressSlice";
-import ColumnLayout from "../ColumnLayout";
 import { useSelector } from "react-redux";
+import { StoreState } from "../../redux/store";
+import { inProgressSlice  } from "../../redux/slice/inProgressSlice";
+import ColumnLayout from "../ColumnLayout";
 
 export function InProgressColumn() {
     const { inProgress } = useSelector((state: StoreState) => state);
 
     const {
-         action :  { completeStatus, remove, add, updatedTextShowed },
+         action :  { completeStatus, remove, add, updateTextShowed },
     } = inProgressSlice;
 
     return (
@@ -22,7 +21,7 @@ export function InProgressColumn() {
                 removeHandler={remove}
                 addHandler={add}
                 selectorState={inProgress}
-                updatedTextShowed={updatedTextShowed}
+                updateTextShowed={updateTextShowed}
             />
         </>
     )
