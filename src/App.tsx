@@ -56,7 +56,7 @@ function App() {
         mb={5}
       >
         This App is created with typescript, React and Redux.
-      </Typography>
+      </Typography>{' '}
       <Grid container spacing={3} justifyContent='center'>
         <DragDropContext onDragEnd={(res) => onDragEnd(res)}>
         <Grid item md={4}>

@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 import { StoreState } from "../../redux/store";
 import { doneSlice } from "../../redux/slice/done";
 import ColumnLayout from "../ColumnLayout";
-import { useSelector } from "react-redux";
 
 export function DoneColumn() {
     const { done } = useSelector((state: StoreState) => state);

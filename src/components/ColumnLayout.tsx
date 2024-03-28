@@ -32,8 +32,11 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
     const [textDescription, setTextDescription] = useState('')
     const dispatch = useDispatch<StoreDispatch>();
 
-    const handleOnChange = ({ target: {value}, } : React.ChangeEvent<HTMLInputElement>) => {
+    const handleOnChange = ({ 
+        target: {value}, 
+    } : React.ChangeEvent<HTMLInputElement>) => {
         setTextDescription(value);
+
         setIsError({
             isShow: value.length > 200,
             text: value.length > 200 ? "The Input value cannot be more than 200 characters" : ''
@@ -53,8 +56,10 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
 
     const handleInputKeyDown = ({target, key,} : React.KeyboardEvent<HTMLInputElement>) => {
         if (key === 'Enter') {
-            if ((target as HTMLInputElement).value.length > 0 && 
-            (target as HTMLInputElement).value.length <= 200) {
+            if (
+                (target as HTMLInputElement).value.length > 0 && 
+                (target as HTMLInputElement).value.length <= 200
+            ) {
                 handleOnClick();
             } else {
                 setIsError({
@@ -66,7 +71,7 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
     }
 
     return (
-        <Box borderRadius={1} width='100%' sx={{ boxShadow: 2, p: 3}}>
+        <Box borderRadius={1} width='100%' sx={{ boxShadow: 2, p: 2}}>
             <TextField 
                 fullWidth
                 label={labelText}
@@ -76,6 +81,7 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
                 value={textDescription}
                 variant='outlined'
                 size='small'
+                sx={{ me:2}}
             />
 
             <Collapse in={isError.isShow}>
@@ -92,7 +98,7 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
                     color="primary"
                     fullWidth
                     onClick={handleOnClick}
-                    onKeyDown={({ key})  => key === 'Enter' &&  handleOnClick()}
+                    onKeyDown={({ key}) => key === 'Enter' && handleOnClick()}
                     disabled={
                         textDescription.length === 0 || textDescription.length > 200
                     }
@@ -149,7 +155,7 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
                                             >
                                                 <IconButton
                                                     sx={{ p: 1, mr: 1}}
-                                                    onClick={() => dispatch(
+                                                    onClick={() =>  dispatch(
                                                         updateTextShowed({
                                                             id,
                                                             isTextShowed: !isTextShowed,
@@ -217,68 +223,11 @@ const ColumnLayout: React.FC<IColumnLayoutProps> = ({
                                 </Draggable>
                             )
                         )}
+                        {provided.placeholder}
                     </List>
                 )}
             </Droppable>
 
-            <List sx={{ minHeight: '300px'}} >
-                {selectorState.map(
-                    ({id, text, isFinished, createdAt, updatedAt }, index: number) => {
-                        return (
-                            <ListItem
-                                sx={{
-                                    position: 'relative',
-                                    border: '1px solid #989898',
-                                    bgcolor: '#fff',
-                                    my: 1,
-                                    borderRadius: '3px',
-                                    '& .MuiTypography-root': {
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                    },
-                                }}
-                            >
-                                <IconButton sx={{ p: 1, mr:1}}>
-                                    <ArrowDownwardIcon />
-                                </IconButton>
-
-                                <Box
-                                    component='span'
-                                    width='100%'
-                                    position='absolute'
-                                    top='0'
-                                    fontSize='.7rem'
-                                >
-                                    {updatedAt ? 'Updated' : 'CreatedAt'} at: {' '} {updatedAt || createdAt}
-                                </Box>
-
-                                <Box component='span' width='100%'>
-                                    {text}
-                                </Box>
-
-                                <Box display='flex' component='span'>
-                                    <IconButton onClick={() => dispatch(removeHandler(id))}>
-                                        <DeleteIcon />
-                                    </IconButton>
-                                    <Checkbox 
-                                        edge='end'
-                                        value={isFinished}
-                                        checked={isFinished}
-                                        inputProps={{ 'aria-label': "controlled"}}
-                                        onChange={() => dispatch(
-                                            completeHandler({
-                                                isFinished: !isFinished,
-                                                id,
-                                                createdAt: new Date().toLocaleDateString(),
-                                                updatedAt: new Date().toLocaleDateString(),
-                                            })
-                                        )}
-                                    />
-                                </Box>
-                            </ListItem>
-                        )
-                    })}
-            </List>
         </Box>
     )
 }
