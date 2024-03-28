@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { StoreState } from "../../redux/store";
-import { inProgressSlice  } from "../../redux/slice/inProgressSlice";
+import { inProgressSlice  } from "../../redux/slice/inProgress";
 import ColumnLayout from "../ColumnLayout";
 
 export function InProgressColumn() {

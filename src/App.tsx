@@ -1,13 +1,13 @@
-import Typography from "@mui/material/Typography";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import Typography from "@mui/material/Typography";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { ToDoColumn } from "./components/columns/ToDo";
-import { InProgressColumn } from "./components/columns/InProgress";
 import { DoneColumn } from "./components/columns/Done";
+import { InProgressColumn } from "./components/columns/InProgress";
 import { todoSlice as todo } from "./redux/slice/todo";
-import { inProgressSlice as inProgress } from "./redux/slice/inProgressSlice";
+import { inProgressSlice as inProgress } from "./redux/slice/inProgress";
 import { doneSlice as done } from "./redux/slice/done";
 import { StoreState } from "./redux/store";
 import { IModel } from "./types";

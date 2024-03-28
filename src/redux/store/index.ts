@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { doneSlice } from '../slice/done';
-import { inProgressSlice } from '../slice/inProgressSlice';
+import { inProgressSlice } from '../slice/inProgress';
 import { todoSlice } from '../slice/todo';
 
 export const store = configureStore({
