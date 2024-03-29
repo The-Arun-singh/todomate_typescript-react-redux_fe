@@ -6,6 +6,7 @@ import ColumnLayout from "../ColumnLayout";
 
 export function ToDoColumn() {
     const { todo } = useSelector((state: StoreState) => state);
+    console.log(todo)
     const {
         action: {completeStatus, remove, add, updateTextShowed},
     } = todoSlice;
@@ -14,7 +15,7 @@ export function ToDoColumn() {
         <>
             <Typography mb={3}>All Todo Tasks: { todo.length }</Typography>
             <ColumnLayout
-                droppableId="todo"
+                droppableId='todo'
                 labelText="Type 'to do' item"
                 completeHandler={completeStatus}
                 removeHandler={remove}
